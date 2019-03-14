@@ -1,4 +1,4 @@
-package com.yusufalicezik.nuevoproje;
+package com.yusufalicezik.nuevoproje.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

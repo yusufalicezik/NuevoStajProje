@@ -16,6 +16,10 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.yusufalicezik.nuevoproje.Adapter.CustomAdapter;
+import com.yusufalicezik.nuevoproje.Model.PhotosResponse;
+import com.yusufalicezik.nuevoproje.Retrofit.ApiClient;
+import com.yusufalicezik.nuevoproje.Retrofit.RestInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +31,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     RestInterface restInterface;
     RecyclerView liste;
-    ArrayList<PhotosResponse> tumPhotos=new ArrayList<>();
+    ArrayList<PhotosResponse> tumFotolar=new ArrayList<>();
     CustomAdapter adapter;
-    ImageView firstPhoto;
+    ImageView firstPhotoBanner;
     ProgressBar progressBar;
 
     @Override
@@ -37,16 +41,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         liste=findViewById(R.id.listem);
-        firstPhoto=findViewById(R.id.imageView);
+        firstPhotoBanner =findViewById(R.id.imageView);
         progressBar=findViewById(R.id.progressBar);
 
         restInterface=ApiClient.getClient().create(RestInterface.class);
         Call<List<PhotosResponse>> call=restInterface.getPhotos();
-       call.enqueue(new Callback<List<PhotosResponse>>() {
+        call.enqueue(new Callback<List<PhotosResponse>>() {
            @Override
            public void onResponse(Call<List<PhotosResponse>> call, Response<List<PhotosResponse>> response) {
-               Log.e("deneme","basarili");
-               Log.e("deneme","url: "+response.toString());
+              // Log.e("deneme","basarili");
+               // Log.e("deneme","url: "+response.toString());
+
+
+               //verileri çektim, modelime atadım ve tek tek arrayliste ekledim.
                for(int i=0;i<response.body().size();i++){
                    PhotosResponse p=new PhotosResponse();
                    p.setAlbumId(response.body().get(i).getAlbumId());
@@ -54,19 +61,18 @@ public class MainActivity extends AppCompatActivity {
                    p.setThumbnailUrl(response.body().get(i).getThumbnailUrl());
                    p.setTitle(response.body().get(i).getTitle());
                    p.setUrl(response.body().get(i).getUrl());
-                   tumPhotos.add(p);
+                   tumFotolar.add(p);
                }
 
+               //listview da kullanılacak olan arraylistime tüm verileri ekledim ve adapter ımı atamak için metodu çağırdım.
                adapterTanimla();
-
-
 
 
 
            }
            @Override
            public void onFailure(Call<List<PhotosResponse>> call, Throwable t) {
-               Log.e("hata", t.getMessage() + "\n" + t.getLocalizedMessage().toString() + "\n");
+               Log.e("hata", t.getMessage() + "\n" + t.getLocalizedMessage() + "\n");
            }
        });
 
@@ -75,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adapterTanimla() {
-        //İlk fotoğraf için(üstteki)
+        //İlk fotoğraf için(üstteki banner için)---/// first Index e göre.
 
-        Glide.with(getApplicationContext()).load(tumPhotos.get(0).getUrl())
+        Glide.with(MainActivity.this).load(tumFotolar.get(0).getUrl())
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -91,9 +97,12 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 })
-                .into(firstPhoto);
-        //
-        adapter=new CustomAdapter(tumPhotos,MainActivity.this);
+                .into(firstPhotoBanner);
+        //---------///
+
+
+
+        adapter=new CustomAdapter(tumFotolar,MainActivity.this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MainActivity.this);
         linearLayoutManager.setStackFromEnd(false);
         liste.setHasFixedSize(true);

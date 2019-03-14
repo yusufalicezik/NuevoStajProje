@@ -4,24 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/allLayout"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="100dp"
     android:layout_marginStart="5dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="5dp"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/list_background">
 
     <TextView
-        android:id="@+id/customTextGun"
+        android:id="@+id/customTextTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:fontFamily="monospace"
+        android:fontFamily="@font/allerta_stencil"
         android:text="TextView"
         android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/customImageview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/customImageview"
@@ -29,8 +28,9 @@
 
     <ImageView
         android:id="@+id/customImageview"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+
+        android:layout_height="100dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

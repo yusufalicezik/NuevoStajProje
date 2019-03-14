@@ -1,4 +1,4 @@
-package com.yusufalicezik.nuevoproje;
+package com.yusufalicezik.nuevoproje.Retrofit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

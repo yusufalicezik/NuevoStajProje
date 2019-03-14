@@ -4,24 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    tools:context=".SecondActivity"
+    tools:layout_editor_absoluteY="25dp">
 
-    <ImageView
-        android:id="@+id/imageViewPosts"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"></include>
+
+    <ImageView
+        android:id="@+id/siListImage"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/siListImage"></View>
+
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="120dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="@+id/textViewBaslik"
+        app:layout_constraintStart_toStartOf="@+id/textViewBaslik"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBaslik"></View>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="152dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/list_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPosts">
+        app:layout_constraintTop_toBottomOf="@+id/view4">
 
         <TextView
             android:id="@+id/textViewPosts"
@@ -30,8 +70,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:text="Yükleniyor..."
+            android:padding="5dp"
+            android:textColor="@android:color/darker_gray"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="23sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +86,65 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/siListImage"
+        app:layout_constraintEnd_toEndOf="@+id/siListImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/siListImage" />
+
+    <TextView
+        android:id="@+id/textViewBaslik"
+        android:layout_width="359dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aldrich"
+        android:text="Baslik"
+        android:textColor="@android:color/darker_gray"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circleImage"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewPosts"
-        app:layout_constraintStart_toStartOf="@+id/imageViewPosts"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPosts" />
+        android:src="@drawable/person_icon"
+        app:civ_border_color="@color/agirOpakGri"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingLeft="5dp"
+        android:text="Tarafından paylaşıldı ;"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/circleImage"
+        app:layout_constraintTop_toTopOf="@+id/circleImage" />
+
+    <TextView
+        android:id="@+id/paylasanEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/circleImage"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
 </android.support.constraint.ConstraintLayout>

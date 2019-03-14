@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/item_yeniPost"
+        android:icon="@drawable/add_icon"
+        app:showAsAction="ifRoom"
+
+        android:title="Yeni Post Ekle">
+
+    </item>
+
+    <item android:id="@+id/item_postuSil"
+        android:title="Postu Sil"
+        android:icon="@drawable/delete_icon"
+        app:showAsAction="never">
+
+    </item>
+
+    <item android:id="@+id/item_postuGuncelle"
+        android:title="Postu Güncelle"
+        android:icon="@drawable/delete_icon"
+        app:showAsAction="never">
+
+    </item>
+
+
+</menu>
